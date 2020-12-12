@@ -1,0 +1,8 @@
+caption: Chart.js-Widget
+created: 20201211200900594
+modified: 20201212154348460
+module-type: widget
+tags: 
+title: $:/plugins/rimir/chartjs/widgets/ChartWidget
+tocp.chartjs-plugin-parent.ref: #:/p/chartjs/#:/widgets
+type: application/javascript

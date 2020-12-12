@@ -1,6 +1,8 @@
+caption: Chart.js v2.9.4
 created: 20201211133526286
-modified: 20201212102636797
+modified: 20201212154143769
 module-type: library
 tags: 
 title: $:/plugins/rimir/chartjs/scripts/ChartLib
+tocp.chartjs-plugin-parent.ref: #:/p/chartjs/#:/scripts
 type: application/javascript

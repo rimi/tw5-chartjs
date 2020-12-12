@@ -1,0 +1,21 @@
+caption: Test-Data 01
+created: 20201212154723075
+modified: 20201212162120414
+tags: x
+title: $:/plugins/rimir/chartjs/test-data01
+tocp.chartjs-plugin-parent.ref: #:/p/chartjs/#:/test-data
+type: text/vnd.tiddlywiki
+
+{
+	"type": "line", 
+	"data": {
+		"labels": ["January", "February", "March", "April", "May", "June", "July"],
+		"datasets": [{
+			"label": "My First dataset",
+			"backgroundColor": "rgb(255, 99, 132)",
+			"borderColor": "rgb(255, 99, 132)",
+			"data": [{{{[tag[x]count[]]}}}, 10, 5, 2, 20, 30, 5]
+		}]
+	},
+	"options": {}
+}
