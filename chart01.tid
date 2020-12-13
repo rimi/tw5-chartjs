@@ -1,11 +1,15 @@
 caption: Chart 01
 created: 20201212161034469
-modified: 20201212161126676
+modified: 20201212175605180
 tags: 
 title: $:/plugins/rimir/chartjs/chart01
 tocp.chartjs-plugin-parent.ref: #:/p/chartjs/#:/test-data
 type: text/vnd.tiddlywiki
 
 based on $:/plugins/rimir/chartjs/test-data01
+<$button>
+<$action-sendmessage $message="tm-open-window" $param="$:/plugins/rimir/chartjs/chart01"/>
+detach
+</$button>
 
 <$chartjs data-tiddler="$:/plugins/rimir/chartjs/test-data01"/>
