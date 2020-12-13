@@ -33,38 +33,49 @@ ChartWidget.prototype.render = function(parent,nextSibling) {
 	this.parentDomNode = parent;
 	this.computeAttributes();
 	this.execute();
-	//if(!this.canvasNode){
-		this.canvasNode = this.document.createElement("canvas");
-		parent.insertBefore(this.canvasNode,nextSibling);
-		this.domNodes.push(this.canvasNode);
-	//}
+	this.canvasNode = this.document.createElement("canvas");
+	parent.insertBefore(this.canvasNode,nextSibling);
+	this.domNodes.push(this.canvasNode);
 	this.initializeChart();
 };
 
 ChartWidget.prototype.initializeChart = function() { 
 	console.log("Calling initializeChart");
-	let ctx = this.canvasNode.getContext('2d');
 	let data = JSON.parse($tw.wiki.renderTiddler("text/plain", this.dataTiddler));
-	this.chart = new Chart(ctx, data);
+	this.chartContext = this.canvasNode.getContext('2d');
+	this.chart = new Chart(this.chartContext, data);
 }
 
 ChartWidget.prototype.updateChart = function() { 
 	console.log("Calling updateChart");
 	let result = false;
 	let data = JSON.parse($tw.wiki.renderTiddler("text/plain", this.dataTiddler));
-	for (let i = 0; i < data.data.datasets.length; i++) {
-		const dataset = data.data.datasets[i];
-		for (let j = 0; j < dataset.data.length; j++) {
-			const data = dataset.data[j];
-			if(this.chart.data.datasets[i].data[j] !== data){
-				result = true;
+	if(this.performFullReload(data)){
+		this.refreshSelf();
+		result = true;
+	}else{
+		for (let i = 0; i < data.data.datasets.length; i++) {
+			const dataset = data.data.datasets[i];
+			for (let j = 0; j < dataset.data.length; j++) {
+				const data = dataset.data[j];
+				if(this.chart.data.datasets[i].data[j] !== data){
+					result = true;
+				}
+				this.chart.data.datasets[i].data[j] = data;
 			}
-			this.chart.data.datasets[i].data[j] = data;
+		}
+		if(result){
+			this.chart.update();
 		}
 	}
-	if(result){
-		this.chart.update();
-	}
+	return result;
+}
+
+ChartWidget.prototype.performFullReload = function(newData) {
+	let result = false;
+	//result = result || newData.type !== this.chart.type;
+	result = result || newData.data.labels.length != this.chart.data.labels.length;
+	result = result || newData.data.datasets.length != this.chart.data.datasets.length;
 	return result;
 }
 	
