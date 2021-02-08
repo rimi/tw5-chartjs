@@ -54,6 +54,7 @@ ChartWidget.prototype.updateChart = function() {
 		this.refreshSelf();
 		result = true;
 	}else{
+		// check if any data has changed
 		for (let i = 0; i < data.data.datasets.length; i++) {
 			const dataset = data.data.datasets[i];
 			for (let j = 0; j < dataset.data.length; j++) {
@@ -64,6 +65,15 @@ ChartWidget.prototype.updateChart = function() {
 				this.chart.data.datasets[i].data[j] = data;
 			}
 		}
+		// check if any label has changed
+		for (let i = 0; i < data.data.labels.length; i++) {
+			const newLabel = data.data.labels[i];
+			if(this.chart.data.labels[i] !== newLabel){
+				result = true;
+			}
+			this.chart.data.labels[i] = newLabel;
+		}
+		
 		if(result){
 			this.chart.update();
 		}
