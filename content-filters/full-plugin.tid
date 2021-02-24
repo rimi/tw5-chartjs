@@ -1,0 +1,9 @@
+caption: ContentFilter: Full Plugin
+created: 20210224143909258
+modified: 20210224144012939
+tags: rimir:content-filter
+title: $:/plugins/rimir/chartjs/content-filters/full-plugin
+tocp.chartjs-plugin-parent.ref: #:/p/chartjs/#:/content-filters
+type: text/vnd.tiddlywiki
+
+[prefix[$:/plugins/rimir/chartjs]]
